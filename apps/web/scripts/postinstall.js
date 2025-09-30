@@ -8,14 +8,16 @@ try {
 
   // Check if we're in production (Vercel)
   if (process.env.VERCEL === '1') {
-    // Run prisma deploy in production
-    console.log('Running prisma deploy...');
-    execSync('cd ../../packages/db && npx prisma migrate deploy', { stdio: 'inherit' });
-    
-    // Run seed script in production
-    if (process.env.SEED_DATABASE === 'true') {
-      console.log('Running seed script...');
-      execSync('cd ../../packages/db && npm run seed', { stdio: 'inherit' });
+    try {
+      // Run prisma deploy in production with --skip-seed flag
+      console.log('Running prisma deploy...');
+      execSync('cd ../../packages/db && npx prisma migrate deploy --skip-seed', { stdio: 'inherit' });
+    } catch (migrateError) {
+      if (migrateError.message.includes('P3005')) {
+        console.log('Database already exists, skipping migration...');
+      } else {
+        throw migrateError;
+      }
     }
   }
 } catch (error) {
