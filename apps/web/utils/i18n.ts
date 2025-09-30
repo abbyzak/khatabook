@@ -34,7 +34,7 @@ export const t = (key: string, locale: string = 'en'): string => {
     value = value?.[k]
   }
   
-  return value || key
+  return typeof value === 'string' ? value : key
 }
 
 export const detectLocaleFromCookie = (context: GetServerSidePropsContext): string => {
