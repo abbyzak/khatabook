@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -13,39 +13,39 @@ enum Role {
 }
 
 model User {
-  id          String       @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  email       String       @unique
-  password    String
-  role        Role         @default(manager)
+  id          Int       @id @default(autoincrement())
+  name        String    @db.VarChar(255)
+  email       String    @unique @db.VarChar(255)
+  password    String    @db.VarChar(255)
+  role        Role      @default(manager)
   products    Product[]
   clients     Client[]
   transactions Transaction[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Product {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         Int       @id @default(autoincrement())
   manager    User      @relation(fields: [managerId], references: [id])
-  managerId  String    @db.ObjectId
-  name       String
-  type       String
-  unit       String
+  managerId  Int
+  name       String    @db.VarChar(255)
+  type       String    @db.VarChar(100)
+  unit       String    @db.VarChar(50)
   price      Float
-  stock      Float      @default(0)
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
+  stock      Float     @default(0)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
   transactions Transaction[]
 }
 
 model Client {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         Int       @id @default(autoincrement())
   manager    User      @relation(fields: [managerId], references: [id])
-  managerId  String    @db.ObjectId
-  name       String
-  phone      String?
-  address    String?
+  managerId  Int
+  name       String    @db.VarChar(255)
+  phone      String?   @db.VarChar(20)
+  address    String?   @db.Text
   balance    Float     @default(0)
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
@@ -53,16 +53,16 @@ model Client {
 }
 
 model Transaction {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  id         Int       @id @default(autoincrement())
   client     Client    @relation(fields: [clientId], references: [id])
-  clientId   String    @db.ObjectId
+  clientId   Int
   manager    User      @relation(fields: [managerId], references: [id])
-  managerId  String    @db.ObjectId
+  managerId  Int
   product    Product?  @relation(fields: [productId], references: [id])
-  productId  String?   @db.ObjectId
-  type       String
+  productId  Int?
+  type       String    @db.VarChar(50)
   quantity   Float?
   amount     Float
-  note       String?
+  note       String?   @db.Text
   createdAt  DateTime  @default(now())
 }

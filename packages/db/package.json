@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "dependencies": {
     "@prisma/client": "5.7.0",
     "bcrypt": "^5.1.1",
-    "mongodb": "^5.7.0"
+    "mysql2": "^3.15.1"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

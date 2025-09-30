@@ -1,0 +1,18 @@
+{
+    "sourceFile": "packages/db/test-connection.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759215835740,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759215835740,
+            "name": "Commit-0",
+            "content": "const mysql = require('mysql2');\n\nconst connection = mysql.createConnection({\n  host: 'mysql.hostinger.com',\n  user: 'moon',\n  password: 'Moon286286',\n  database: 'moon'\n});\n\nconnection.connect((err) => {\n  if (err) {\n    console.error('Error connecting to MySQL:', err);\n    process.exit(1);\n  }\n  console.log('Successfully connected to MySQL!');\n  connection.end();\n});"
+        }
+    ]
+}

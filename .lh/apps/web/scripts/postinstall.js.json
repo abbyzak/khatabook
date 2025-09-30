@@ -1,0 +1,18 @@
+{
+    "sourceFile": "apps/web/scripts/postinstall.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759207963739,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759207963739,
+            "name": "Commit-0",
+            "content": "const { execSync } = require('child_process');\n\n// This script will run after npm install\ntry {\n  // Run prisma generate\n  console.log('Running prisma generate...');\n  execSync('cd ../../packages/db && npx prisma generate', { stdio: 'inherit' });\n\n  // Check if we're in production (Vercel)\n  if (process.env.VERCEL === '1') {\n    // Run prisma deploy in production\n    console.log('Running prisma deploy...');\n    execSync('cd ../../packages/db && npx prisma migrate deploy', { stdio: 'inherit' });\n    \n    // Run seed script in production\n    if (process.env.SEED_DATABASE === 'true') {\n      console.log('Running seed script...');\n      execSync('cd ../../packages/db && npm run seed', { stdio: 'inherit' });\n    }\n  }\n} catch (error) {\n  console.error('postinstall script failed:', error);\n  process.exit(1);\n}"
+        }
+    ]
+}

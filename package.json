@@ -8,8 +8,6 @@
     "packages/*"
   ],
   "scripts": {
-    "postinstall": "npm run install:all",
-    "install:all": "cd packages/db && npm install && cd ../../apps/web && npm install",
     "dev": "cd apps/web && npm run dev",
     "build": "cd apps/web && npm run build",
     "start": "cd apps/web && npm run start",
