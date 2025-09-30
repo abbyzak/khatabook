@@ -10,9 +10,9 @@
     "postinstall": "node scripts/postinstall.js"
   },
   "dependencies": {
-    "@sabir-khatabook/db": "workspace:*",
-    "@sabir-khatabook/ui": "workspace:*",
-    "@sabir-khatabook/utils": "workspace:*",
+    "@sabir-khatabook/db": "1.0.0",
+    "@sabir-khatabook/ui": "1.0.0",
+    "@sabir-khatabook/utils": "1.0.0",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
