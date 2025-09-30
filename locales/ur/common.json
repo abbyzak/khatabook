@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "dashboard": "ڈیش بورڈ",
+    "products": "مصنوعات",
+    "clients": "گاہک",
+    "transactions": "لین دین",
+    "reports": "رپورٹس",
+    "managers": "منیجرز",
+    "logout": "لاگ آؤٹ"
+  },
+  "auth": {
+    "login": "لاگ ان",
+    "email": "ای میل",
+    "password": "پاس ورڈ",
+    "loginButton": "داخل ہوں",
+    "invalidCredentials": "غلط ای میل یا پاس ورڈ",
+    "loginRequired": "جاری رکھنے کے لیے لاگ ان کریں"
+  },
+  "dashboard": {
+    "welcome": "خوش آمدید",
+    "totalSales": "کل فروخت",
+    "totalDues": "کل بقایا",
+    "lowStock": "کم اسٹاک",
+    "recentTransactions": "حالیہ لین دین",
+    "quickActions": "فوری اعمال",
+    "addProduct": "پروڈکٹ شامل کریں",
+    "addClient": "گاہک شامل کریں",
+    "newTransaction": "نیا لین دین"
+  },
+  "products": {
+    "title": "مصنوعات",
+    "name": "پروڈکٹ کا نام",
+    "type": "قسم",
+    "unit": "یونٹ",
+    "price": "قیمت",
+    "stock": "اسٹاک",
+    "actions": "اعمال",
+    "add": "پروڈکٹ شامل کریں",
+    "edit": "پروڈکٹ میں تبدیلی",
+    "delete": "پروڈکٹ ہٹائیں",
+    "save": "محفوظ کریں",
+    "cancel": "منسوخ",
+    "fertilizer": "کھاد",
+    "seed": "بیج",
+    "spray": "سپرے"
+  },
+  "clients": {
+    "title": "گاہک",
+    "name": "گاہک کا نام",
+    "phone": "فون",
+    "address": "پتہ",
+    "balance": "بقایا",
+    "actions": "اعمال",
+    "add": "گاہک شامل کریں",
+    "edit": "گاہک میں تبدیلی",
+    "delete": "گاہک ہٹائیں",
+    "save": "محفوظ کریں",
+    "cancel": "منسوخ",
+    "viewTransactions": "لین دین دیکھیں"
+  },
+  "transactions": {
+    "title": "لین دین",
+    "date": "تاریخ",
+    "client": "گاہک",
+    "type": "قسم",
+    "product": "پروڈکٹ",
+    "quantity": "مقدار",
+    "amount": "رقم",
+    "note": "نوٹ",
+    "sale": "فروخت",
+    "payment": "ادائیگی",
+    "add": "لین دین شامل کریں",
+    "save": "محفوظ کریں",
+    "cancel": "منسوخ"
+  },
+  "invoice": {
+    "title": "بل",
+    "invoiceNumber": "بل نمبر",
+    "date": "تاریخ",
+    "clientInfo": "گاہک کی معلومات",
+    "productDetails": "پروڈکٹ کی تفصیلات",
+    "quantity": "مقدار",
+    "price": "قیمت",
+    "total": "کل",
+    "balance": "باقی رقم",
+    "print": "پرنٹ کریں"
+  },
+  "common": {
+    "loading": "لوڈ ہو رہا ہے...",
+    "error": "خرابی",
+    "success": "کامیابی",
+    "confirm": "تصدیق",
+    "yes": "ہاں",
+    "no": "نہیں",
+    "search": "تلاش",
+    "filter": "فلٹر",
+    "export": "ایکسپورٹ",
+    "language": "زبان",
+    "english": "انگریزی",
+    "urdu": "اردو"
+  }
+}

@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  manager
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  name        String
+  email       String       @unique
+  password    String
+  role        Role         @default(manager)
+  products    Product[]
+  clients     Client[]
+  transactions Transaction[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Product {
+  id         Int       @id @default(autoincrement())
+  manager    User      @relation(fields: [managerId], references: [id])
+  managerId  Int
+  name       String
+  type       String
+  unit       String
+  price      Float
+  stock      Float      @default(0)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  transactions Transaction[]
+}
+
+model Client {
+  id         Int       @id @default(autoincrement())
+  manager    User      @relation(fields: [managerId], references: [id])
+  managerId  Int
+  name       String
+  phone      String?
+  address    String?
+  balance    Float     @default(0)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  transactions Transaction[]
+}
+
+model Transaction {
+  id         Int       @id @default(autoincrement())
+  client     Client    @relation(fields: [clientId], references: [id])
+  clientId   Int
+  manager    User      @relation(fields: [managerId], references: [id])
+  managerId  Int
+  product    Product?  @relation(fields: [productId], references: [id])
+  productId  Int?
+  type       String
+  quantity   Float?
+  amount     Float
+  note       String?
+  createdAt  DateTime  @default(now())
+}
