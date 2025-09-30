@@ -2,6 +2,11 @@
   "name": "sabir-khatabook",
   "version": "1.0.0",
   "description": "Bilingual SaaS ledger for agricultural sellers",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "dev": "cd apps/web && npm run dev",
     "build": "cd apps/web && npm run build",
@@ -10,8 +15,7 @@
     "prisma:migrate": "cd packages/db && npx prisma migrate dev",
     "prisma:seed": "cd packages/db && npx tsx prisma/seed.ts",
     "prisma:deploy": "cd packages/db && npx prisma migrate deploy",
-    "test": "jest",
-    "install:all": "pnpm install && cd apps/web && npm install && cd ../../packages/db && npm install"
+    "test": "jest"
   },
   "keywords": ["ledger", "agriculture", "saas", "bilingual"],
   "license": "MIT",
