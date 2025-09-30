@@ -1,18 +1,7 @@
 {
-  "buildCommand": "cd packages/db && npx prisma generate && cd ../../apps/web && npm run build",
+  "buildCommand": "cd packages/db && npm install && npx prisma generate && cd ../../apps/web && npm run build",
   "devCommand": "cd apps/web && npm run dev",
   "installCommand": "pnpm install && cd apps/web && npm install",
   "outputDirectory": "apps/web/.next",
-  "framework": "nextjs",
-  "functions": {
-    "apps/web/pages/api/**/*.(j|t)s": {
-      "maxDuration": 30
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/apps/web/$1"
-    }
-  ]
+  "framework": "nextjs"
 }
