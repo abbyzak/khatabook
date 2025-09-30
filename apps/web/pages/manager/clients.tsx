@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next/router'
+import type { GetServerSideProps } from 'next/types'
 import { Button, Input, Card } from '@sabir-khatabook/ui'
 import Layout from '@/components/Layout'
 import { loadTranslations, detectLocaleFromCookie } from '@/utils/i18n'
