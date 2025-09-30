@@ -9,15 +9,18 @@ try {
   // Check if we're in production (Vercel)
   if (process.env.VERCEL === '1') {
     try {
-      // Run prisma deploy in production
+      // Create migrations directory if it doesn't exist
+      execSync('cd ../../packages/db && mkdir -p prisma/migrations/0_init', { stdio: 'inherit' });
+      
+      // Run prisma migrate to create tables
       console.log('Running prisma migrate deploy...');
       execSync('cd ../../packages/db && npx prisma migrate deploy', { stdio: 'inherit' });
-    } catch (migrateError) {
-      // Check if it's the "database already exists" error
-      if (migrateError.message && migrateError.message.includes('P3005')) {
-        console.log('Database already exists and has tables. Skipping migration...');
+    } catch (error) {
+      if (error.message && error.message.includes('P3005')) {
+        console.log('Database schema already exists, continuing...');
       } else {
-        throw migrateError;
+        console.error('Migration error:', error);
+        process.exit(1);
       }
     }
   }
