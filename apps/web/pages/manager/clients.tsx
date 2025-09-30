@@ -5,15 +5,23 @@ import Layout from '@/components/Layout'
 import { loadTranslations, detectLocaleFromCookie } from '@/utils/i18n'
 import axios from 'axios'
 
+interface Client {
+  id: number;
+  name: string;
+  phone?: string;
+  address?: string;
+  balance: number;
+}
+
 interface ClientsProps {
-  translations: any
+  translations: any;
 }
 
 export default function Clients({ translations }: ClientsProps) {
-  const [user, setUser] = useState(null)
-  const [clients, setClients] = useState([])
+  const [user, setUser] = useState<any>(null)
+  const [clients, setClients] = useState<Client[]>([])
   const [showModal, setShowModal] = useState(false)
-  const [editingClient, setEditingClient] = useState(null)
+  const [editingClient, setEditingClient] = useState<Client | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -71,7 +79,7 @@ export default function Clients({ translations }: ClientsProps) {
     }
   }
 
-  const handleEdit = (client: any) => {
+  const handleEdit = (client: Client) => {
     setEditingClient(client)
     setFormData({
       name: client.name,
@@ -125,7 +133,7 @@ export default function Clients({ translations }: ClientsProps) {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {clients.map((client: any) => (
+                {clients.map((client: Client) => (
                   <tr key={client.id}>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {client.name}
