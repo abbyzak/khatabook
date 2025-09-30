@@ -1,0 +1,18 @@
+{
+    "sourceFile": "packages/db/prisma/migrations/0_init/migration.sql",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759222603513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759222603513,
+            "name": "Commit-0",
+            "content": "-- CreateEnum\nCREATE TYPE \"Role\" AS ENUM ('admin', 'manager');\n\n-- CreateTable\nCREATE TABLE \"User\" (\n    \"id\" SERIAL NOT NULL,\n    \"name\" VARCHAR(255) NOT NULL,\n    \"email\" VARCHAR(255) NOT NULL,\n    \"password\" VARCHAR(255) NOT NULL,\n    \"role\" \"Role\" NOT NULL DEFAULT 'manager',\n    \"createdAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    \"updatedAt\" TIMESTAMP(3) NOT NULL,\n\n    CONSTRAINT \"User_pkey\" PRIMARY KEY (\"id\")\n);\n\n-- CreateTable\nCREATE TABLE \"Product\" (\n    \"id\" SERIAL NOT NULL,\n    \"managerId\" INTEGER NOT NULL,\n    \"name\" VARCHAR(255) NOT NULL,\n    \"type\" VARCHAR(100) NOT NULL,\n    \"unit\" VARCHAR(50) NOT NULL,\n    \"price\" DOUBLE PRECISION NOT NULL,\n    \"stock\" DOUBLE PRECISION NOT NULL DEFAULT 0,\n    \"createdAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    \"updatedAt\" TIMESTAMP(3) NOT NULL,\n\n    CONSTRAINT \"Product_pkey\" PRIMARY KEY (\"id\")\n);\n\n-- CreateTable\nCREATE TABLE \"Client\" (\n    \"id\" SERIAL NOT NULL,\n    \"managerId\" INTEGER NOT NULL,\n    \"name\" VARCHAR(255) NOT NULL,\n    \"phone\" VARCHAR(20),\n    \"address\" TEXT,\n    \"balance\" DOUBLE PRECISION NOT NULL DEFAULT 0,\n    \"createdAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,\n    \"updatedAt\" TIMESTAMP(3) NOT NULL,\n\n    CONSTRAINT \"Client_pkey\" PRIMARY KEY (\"id\")\n);\n\n-- CreateTable\nCREATE TABLE \"Transaction\" (\n    \"id\" SERIAL NOT NULL,\n    \"clientId\" INTEGER NOT NULL,\n    \"managerId\" INTEGER NOT NULL,\n    \"productId\" INTEGER,\n    \"type\" VARCHAR(50) NOT NULL,\n    \"quantity\" DOUBLE PRECISION,\n    \"amount\" DOUBLE PRECISION NOT NULL,\n    \"note\" TEXT,\n    \"createdAt\" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,\n\n    CONSTRAINT \"Transaction_pkey\" PRIMARY KEY (\"id\")\n);\n\n-- CreateIndex\nCREATE UNIQUE INDEX \"User_email_key\" ON \"User\"(\"email\");\n\n-- AddForeignKey\nALTER TABLE \"Product\" ADD CONSTRAINT \"Product_managerId_fkey\" FOREIGN KEY (\"managerId\") REFERENCES \"User\"(\"id\") ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE \"Client\" ADD CONSTRAINT \"Client_managerId_fkey\" FOREIGN KEY (\"managerId\") REFERENCES \"User\"(\"id\") ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE \"Transaction\" ADD CONSTRAINT \"Transaction_clientId_fkey\" FOREIGN KEY (\"clientId\") REFERENCES \"Client\"(\"id\") ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE \"Transaction\" ADD CONSTRAINT \"Transaction_managerId_fkey\" FOREIGN KEY (\"managerId\") REFERENCES \"User\"(\"id\") ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE \"Transaction\" ADD CONSTRAINT \"Transaction_productId_fkey\" FOREIGN KEY (\"productId\") REFERENCES \"Product\"(\"id\") ON DELETE SET NULL ON UPDATE CASCADE;"
+        }
+    ]
+}

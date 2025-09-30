@@ -1,0 +1,18 @@
+{
+    "sourceFile": "packages/db/prisma/migrations/20250930_init/migration.sql",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759222603513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759222603513,
+            "name": "Commit-0",
+            "content": "-- CreateTable\nCREATE TABLE `User` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `name` VARCHAR(255) NOT NULL,\n    `email` VARCHAR(255) NOT NULL,\n    `password` VARCHAR(255) NOT NULL,\n    `role` ENUM('admin', 'manager') NOT NULL DEFAULT 'manager',\n    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),\n    `updatedAt` DATETIME(3) NOT NULL,\n\n    UNIQUE INDEX `User_email_key`(`email`),\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- CreateTable\nCREATE TABLE `Product` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `managerId` INTEGER NOT NULL,\n    `name` VARCHAR(255) NOT NULL,\n    `type` VARCHAR(100) NOT NULL,\n    `unit` VARCHAR(50) NOT NULL,\n    `price` DOUBLE NOT NULL,\n    `stock` DOUBLE NOT NULL DEFAULT 0,\n    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),\n    `updatedAt` DATETIME(3) NOT NULL,\n\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- CreateTable\nCREATE TABLE `Client` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `managerId` INTEGER NOT NULL,\n    `name` VARCHAR(255) NOT NULL,\n    `phone` VARCHAR(20) NULL,\n    `address` TEXT NULL,\n    `balance` DOUBLE NOT NULL DEFAULT 0,\n    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),\n    `updatedAt` DATETIME(3) NOT NULL,\n\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- CreateTable\nCREATE TABLE `Transaction` (\n    `id` INTEGER NOT NULL AUTO_INCREMENT,\n    `clientId` INTEGER NOT NULL,\n    `managerId` INTEGER NOT NULL,\n    `productId` INTEGER NULL,\n    `type` VARCHAR(50) NOT NULL,\n    `quantity` DOUBLE NULL,\n    `amount` DOUBLE NOT NULL,\n    `note` TEXT NULL,\n    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),\n\n    PRIMARY KEY (`id`)\n) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n-- AddForeignKey\nALTER TABLE `Product` ADD CONSTRAINT `Product_managerId_fkey` FOREIGN KEY (`managerId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE `Client` ADD CONSTRAINT `Client_managerId_fkey` FOREIGN KEY (`managerId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_clientId_fkey` FOREIGN KEY (`clientId`) REFERENCES `Client`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_managerId_fkey` FOREIGN KEY (`managerId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;\n\n-- AddForeignKey\nALTER TABLE `Transaction` ADD CONSTRAINT `Transaction_productId_fkey` FOREIGN KEY (`productId`) REFERENCES `Product`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;"
+        }
+    ]
+}

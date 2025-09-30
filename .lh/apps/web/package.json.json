@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1759207963739,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759222603560,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,19 +12,29 @@\n   \"dependencies\": {\n     \"@sabir-khatabook/db\": \"1.0.0\",\n     \"@sabir-khatabook/ui\": \"1.0.0\",\n     \"@sabir-khatabook/utils\": \"1.0.0\",\n+    \"axios\": \"^1.6.2\",\n     \"next\": \"14.0.4\",\n     \"react\": \"^18.2.0\",\n-    \"react-dom\": \"^18.2.0\",\n-    \"axios\": \"^1.6.2\"\n+    \"react-dom\": \"^18.2.0\"\n   },\n   \"devDependencies\": {\n+    \"@rushstack/eslint-patch\": \"^1.12.0\",\n     \"@types/node\": \"^20.10.5\",\n     \"@types/react\": \"^18.2.45\",\n     \"@types/react-dom\": \"^18.2.17\",\n+    \"@typescript-eslint/eslint-plugin\": \"^6.14.0\",\n+    \"@typescript-eslint/parser\": \"^6.14.0\",\n     \"autoprefixer\": \"^10.4.16\",\n\\ No newline at end of file\n+    \"eslint\": \"^8.56.0\",\n+    \"eslint-config-next\": \"14.0.4\",\n+    \"eslint-import-resolver-typescript\": \"^3.10.1\",\n+    \"eslint-plugin-import\": \"^2.32.0\",\n+    \"eslint-plugin-jsx-a11y\": \"^6.10.2\",\n+    \"eslint-plugin-react\": \"^7.37.5\",\n+    \"eslint-plugin-react-hooks\": \"^5.0.0-canary-7118f5dd7-20230705\",\n     \"postcss\": \"^8.4.32\",\n     \"tailwindcss\": \"^3.3.6\",\n     \"typescript\": \"^5.3.2\"\n   }\n-}\n+}\n"
                 }
             ],
             "date": 1759207963739,

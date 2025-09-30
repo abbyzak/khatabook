@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1759207963739,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759222603613,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,16 +7,22 @@\n   execSync('cd ../../packages/db && npx prisma generate', { stdio: 'inherit' });\n \n   // Check if we're in production (Vercel)\n   if (process.env.VERCEL === '1') {\n-    // Run prisma deploy in production\n-    console.log('Running prisma deploy...');\n-    execSync('cd ../../packages/db && npx prisma migrate deploy', { stdio: 'inherit' });\n-    \n-    // Run seed script in production\n-    if (process.env.SEED_DATABASE === 'true') {\n-      console.log('Running seed script...');\n-      execSync('cd ../../packages/db && npm run seed', { stdio: 'inherit' });\n+    try {\n+      // Create migrations directory if it doesn't exist\n+      execSync('cd ../../packages/db && mkdir -p prisma/migrations/0_init', { stdio: 'inherit' });\n+      \n+      // Run prisma migrate to create tables\n+      console.log('Running prisma migrate deploy...');\n+      execSync('cd ../../packages/db && npx prisma migrate deploy', { stdio: 'inherit' });\n+    } catch (error) {\n+      if (error.message && error.message.includes('P3005')) {\n+        console.log('Database schema already exists, continuing...');\n+      } else {\n+        console.error('Migration error:', error);\n+        process.exit(1);\n+      }\n     }\n   }\n } catch (error) {\n   console.error('postinstall script failed:', error);\n"
                 }
             ],
             "date": 1759207963739,

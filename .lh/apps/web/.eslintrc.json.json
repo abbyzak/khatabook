@@ -1,0 +1,18 @@
+{
+    "sourceFile": "apps/web/.eslintrc.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759222603516,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759222603516,
+            "name": "Commit-0",
+            "content": "{\n  \"root\": true,\n  \"parser\": \"@typescript-eslint/parser\",\n  \"plugins\": [\"@typescript-eslint\"],\n  \"extends\": [\n    \"next/core-web-vitals\",\n    \"plugin:@typescript-eslint/recommended\"\n  ],\n  \"rules\": {\n    \"react/no-unescaped-entities\": \"off\",\n    \"@next/next/no-page-custom-font\": \"off\",\n    \"@typescript-eslint/no-explicit-any\": \"off\",\n    \"@typescript-eslint/no-unused-vars\": \"off\",\n    \"@next/next/no-html-link-for-pages\": \"off\"\n  }\n}"
+        }
+    ]
+}

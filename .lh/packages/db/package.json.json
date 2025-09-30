@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 2,
             "patches": [
                 {
                     "date": 1759207963740,
@@ -12,6 +12,10 @@
                 {
                     "date": 1759215835733,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n   \"types\": \"./dist/index.d.ts\",\n   \"dependencies\": {\n     \"@prisma/client\": \"5.7.0\",\n     \"bcrypt\": \"^5.1.1\",\n-    \"mongodb\": \"^5.7.0\"\n+    \"mysql2\": \"^3.15.1\"\n   },\n   \"devDependencies\": {\n     \"@types/bcrypt\": \"^5.0.2\",\n     \"prisma\": \"5.7.0\",\n"
+                },
+                {
+                    "date": 1759222603561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,26 @@\n+{\n+  \"name\": \"@sabir-khatabook/db\",\n+  \"version\": \"1.0.0\",\n+  \"main\": \"./dist/index.js\",\n+  \"types\": \"./dist/index.d.ts\",\n+  \"prisma\": {\n+    \"seed\": \"tsx prisma/seed.ts\"\n+  },\n+  \"dependencies\": {\n+    \"@prisma/client\": \"5.7.0\",\n+    \"bcrypt\": \"^5.1.1\",\n+    \"mysql2\": \"^3.15.1\"\n+  },\n+  \"devDependencies\": {\n+    \"@types/bcrypt\": \"^5.0.2\",\n+    \"prisma\": \"5.7.0\",\n+    \"tsx\": \"^4.6.0\",\n+    \"typescript\": \"^5.3.2\"\n+  },\n+  \"scripts\": {\n+    \"generate\": \"prisma generate\",\n+    \"migrate\": \"prisma migrate dev\",\n+    \"seed\": \"tsx prisma/seed.ts\",\n+    \"deploy\": \"prisma migrate deploy\"\n+  }\n+}\n"
                 }
             ],
             "date": 1759207963740,

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "apps/web/utils/i18n.ts",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1759222603554,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1759222603554,
+            "name": "Commit-0",
+            "content": "import { GetServerSidePropsContext } from 'next'\n\ninterface Translations {\n  [key: string]: any\n}\n\nlet translations: { [locale: string]: Translations } = {}\n\nexport const loadTranslations = async (locale: string): Promise<Translations> => {\n  if (translations[locale]) {\n    return translations[locale]\n  }\n\n  try {\n    const common = await import(`../../../locales/${locale}/common.json`)\n    translations[locale] = common.default || common\n    return translations[locale]\n  } catch (error) {\n    console.error(`Failed to load translations for locale: ${locale}`)\n    const fallback = await import('../../../locales/en/common.json')\n    return fallback.default || fallback\n  }\n}\n\nexport const getTranslations = (locale: string = 'en'): Translations => {\n  return translations[locale] || {}\n}\n\nexport const t = (key: string, locale: string = 'en'): string => {\n  const keys = key.split('.')\n  let value = translations[locale]\n  \n  for (const k of keys) {\n    value = value?.[k]\n  }\n  \n  return typeof value === 'string' ? value : key\n}\n\nexport const detectLocaleFromCookie = (context: GetServerSidePropsContext): string => {\n  const locale = context.req.cookies.NEXT_LOCALE\n  return locale === 'ur' ? 'ur' : 'en'\n}"
+        }
+    ]
+}

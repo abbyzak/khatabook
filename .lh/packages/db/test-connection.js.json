@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1759215835740,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759222603576,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,17 @@\n+const mysql = require('mysql2');\n+\n+const connection = mysql.createConnection({\n+  host: 'srv1999.hstgr.io',\n+  user: 'u249454424_moon',\n+  password: 'Moon286286',\n+  database: 'u249454424_moon'\n+});\n+\n+connection.connect((err) => {\n+  if (err) {\n+    console.error('Error connecting to MySQL:', err);\n+    process.exit(1);\n+  }\n+  console.log('Successfully connected to MySQL!');\n+  connection.end();\n+});\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1759215835740,

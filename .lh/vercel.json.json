@@ -3,11 +3,15 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 0,
+            "activePatchIndex": 1,
             "patches": [
                 {
                     "date": 1759207963739,
                     "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1759222603610,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n {\n-  \"buildCommand\": \"npm run install:all && cd packages/db && npx prisma generate && cd ../../apps/web && npm run build\",\n+  \"buildCommand\": \"cd apps/web && npm run build\",\n   \"devCommand\": \"cd apps/web && npm run dev\",\n   \"installCommand\": \"npm install\",\n   \"outputDirectory\": \"apps/web/.next\",\n-  \"framework\": \"nextjs\"\n+  \"framework\": \"nextjs\",\n+  \"env\": {\n+    \"DATABASE_URL\": \"mysql://u249454424_moon:Moon286286@srv1999.hstgr.io:3306/u249454424_moon\"\n+  }\n }\n\\ No newline at end of file\n"
                 }
             ],
             "date": 1759207963739,
