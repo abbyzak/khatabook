@@ -5,7 +5,7 @@
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs",
   "functions": {
-    "apps/web/pages/api/**/*.js": {
+    "apps/web/pages/api/**/*.(j|t)s": {
       "maxDuration": 30
     }
   },
