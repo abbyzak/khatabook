@@ -1,9 +1,30 @@
 import { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next/router'
+import type { GetServerSideProps } from 'next'
 import { Card } from '@sabir-khatabook/ui'
 import Layout from '@/components/Layout'
 import { loadTranslations, detectLocaleFromCookie } from '@/utils/i18n'
 import axios from 'axios'
+
+interface Client {
+  id: number
+  name: string
+}
+
+interface Product {
+  id: number
+  name: string
+}
+
+interface Transaction {
+  id: number
+  type: 'sale' | 'payment'
+  amount: number
+  quantity?: number
+  note?: string
+  createdAt: string
+  client: Client
+  product?: Product
+}
 
 interface TransactionsProps {
   translations: any
@@ -11,7 +32,7 @@ interface TransactionsProps {
 
 export default function Transactions({ translations }: TransactionsProps) {
   const [user, setUser] = useState(null)
-  const [transactions, setTransactions] = useState([])
+  const [transactions, setTransactions] = useState<Transaction[]>([])
 
   const t = (key: string) => {
     const keys = key.split('.')
@@ -41,7 +62,7 @@ export default function Transactions({ translations }: TransactionsProps) {
       
       for (const client of clientsResponse.data) {
         const transactionsResponse = await axios.get(`/api/manager/clients/${client.id}/transactions`, { headers })
-        allTransactions.push(...transactionsResponse.data.map(t => ({ ...t, client })))
+        allTransactions.push(...transactionsResponse.data.map((t: Omit<Transaction, 'client'>) => ({ ...t, client })))
       }
       
       setTransactions(allTransactions.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()))

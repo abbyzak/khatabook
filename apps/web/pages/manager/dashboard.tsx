@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next/router'
+import type { GetServerSideProps } from 'next'
 import { Card } from '@sabir-khatabook/ui'
 import Layout from '@/components/Layout'
 import { loadTranslations, detectLocaleFromCookie } from '@/utils/i18n'
 import axios from 'axios'
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  role: 'admin' | 'manager';
+}
 
 interface DashboardProps {
   translations: any
 }
 
 export default function ManagerDashboard({ translations }: DashboardProps) {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState<User | null>(null)
   const [stats, setStats] = useState({
     totalSales: 0,
     totalDues: 0,

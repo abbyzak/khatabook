@@ -1,9 +1,18 @@
 import { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next/router'
+import type { GetServerSideProps } from 'next'
 import { Button, Input, Card } from '@sabir-khatabook/ui'
 import Layout from '@/components/Layout'
 import { loadTranslations, detectLocaleFromCookie } from '@/utils/i18n'
 import axios from 'axios'
+
+interface Product {
+  id: number
+  name: string
+  type: 'fertilizer' | 'seed' | 'spray'
+  unit: string
+  price: number
+  stock: number
+}
 
 interface ProductsProps {
   translations: any
@@ -11,9 +20,9 @@ interface ProductsProps {
 
 export default function Products({ translations }: ProductsProps) {
   const [user, setUser] = useState(null)
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState<Product[]>([])
   const [showModal, setShowModal] = useState(false)
-  const [editingProduct, setEditingProduct] = useState(null)
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null)
   const [formData, setFormData] = useState({
     name: '',
     type: 'fertilizer',
