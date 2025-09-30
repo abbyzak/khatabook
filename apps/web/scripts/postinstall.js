@@ -9,12 +9,13 @@ try {
   // Check if we're in production (Vercel)
   if (process.env.VERCEL === '1') {
     try {
-      // Run prisma deploy in production with --skip-seed flag
-      console.log('Running prisma deploy...');
-      execSync('cd ../../packages/db && npx prisma migrate deploy --skip-seed', { stdio: 'inherit' });
+      // Run prisma deploy in production
+      console.log('Running prisma migrate deploy...');
+      execSync('cd ../../packages/db && npx prisma migrate deploy', { stdio: 'inherit' });
     } catch (migrateError) {
-      if (migrateError.message.includes('P3005')) {
-        console.log('Database already exists, skipping migration...');
+      // Check if it's the "database already exists" error
+      if (migrateError.message && migrateError.message.includes('P3005')) {
+        console.log('Database already exists and has tables. Skipping migration...');
       } else {
         throw migrateError;
       }

@@ -1,7 +1,10 @@
 {
-  "buildCommand": "npm run install:all && cd packages/db && npx prisma generate && cd ../../apps/web && npm run build",
+  "buildCommand": "cd apps/web && npm run build",
   "devCommand": "cd apps/web && npm run dev",
   "installCommand": "npm install",
   "outputDirectory": "apps/web/.next",
-  "framework": "nextjs"
+  "framework": "nextjs",
+  "env": {
+    "DATABASE_URL": "mysql://u249454424_moon:Moon286286@srv1999.hstgr.io:3306/u249454424_moon"
+  }
 }
